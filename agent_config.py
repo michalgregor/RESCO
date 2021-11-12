@@ -5,6 +5,7 @@ from agents.stochastic import STOCHASTIC
 from agents.maxwave import MAXWAVE
 from agents.maxpressure import MAXPRESSURE
 from agents.pfrl_dqn import IDQN
+from agents.pfrl_dqn_perceiver import IDQNPerceiver
 from agents.pfrl_ppo import IPPO
 from agents.mplight import MPLight
 from agents.fma2c import FMA2C
@@ -91,6 +92,31 @@ agent_configs = {
         'EPS_END': 0.0,
         'EPS_DECAY': 220,
         'TARGET_UPDATE': 500
+    },
+    'IDQNPerceiver': {
+        'agent': IDQNPerceiver,
+        'state': states.drq_norm,
+        'reward': rewards.wait_norm,
+        'max_distance': 200,
+        'BATCH_SIZE': 32,
+        'GAMMA': 0.99,
+        'EPS_START': 1.0,
+        'EPS_END': 0.0,
+        'EPS_DECAY': 220,
+        'TARGET_UPDATE': 500,
+        # perceiver hyperparams
+        'num_freq_bands': 2,
+        'max_freq': 5,
+        'depth': 2,
+        'num_latents': 16,
+        'latent_dim': 16,
+        'cross_heads': 1,
+        'latent_heads': 2,
+        'cross_dim_head': 16,
+        'latent_dim_head': 8,
+        'attn_dropout': 0.5,
+        'ff_dropout': 0.5,
+        'self_per_cross_attn': 1
     },
     'IPPO': {
         'agent': IPPO,
